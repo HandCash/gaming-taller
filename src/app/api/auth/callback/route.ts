@@ -45,7 +45,7 @@ async function sendInitialNft(userId: string, userHandle: string) {
                 },
                 multimedia: {
                     contentType: 'application/glb',
-                    url: '/mystery-box.glb'
+                    url: Constants.baseUrl + '/mystery-box.glb'
                 }
             },
             actions: []
