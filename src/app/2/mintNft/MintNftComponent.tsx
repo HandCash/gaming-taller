@@ -45,7 +45,7 @@ export default function MintNftComponent() {
 
     useEffect(() => {
         const fetchPayments = async () => {
-            const response = await fetch(`/api/nfts?i=${new Date().getTime()}`);
+            const response = await fetch(`/api/nfts?i=${new Date().getTime()}&label=avatar`);
             if (response.ok) {
                 const data = await response.json();
                 setMintedNfts(data.items);
@@ -112,7 +112,7 @@ export default function MintNftComponent() {
 
     return (
         <div className="flex flex-col lg:flex-row gap-6 my-12">
-            <div className="flex flex-col items-center gap-4 w-full lg:w-1/2">
+            <div className="flex flex-col items-center gap-4 w-full lg:w-1/2 px-12">
                 <p className="text-lg font-semibold tracking-tighter uppercase">Crea tu avatar</p>
                 <div className="flex flex-col space-y-4">
                     <div className="flex justify-center">

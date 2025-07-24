@@ -38,13 +38,13 @@ export default function WelcomeComponent({ isCreateNftCompleted, isBurnNftComple
                         </Link>
                     </li>
                     <li style={{ marginBottom: 20 }}>
-                        <Link href="/2/burnNft" style={{ textDecoration: 'none', color: '#222', display: 'block', padding: 16, borderRadius: 8, background: '#f5f5f5', transition: 'background 0.2s', fontWeight: 500 }}>
-                            <span className="mr-3">{isBurnNftCompleted ? '✅' : '⌛️'}</span>Redimir un NFT
-                        </Link>
-                    </li>
-                    <li>
                         <Link href="/2/buyNft" style={{ textDecoration: 'none', color: '#222', display: 'block', padding: 16, borderRadius: 8, background: '#f5f5f5', transition: 'background 0.2s', fontWeight: 500 }}>
                             <span className="mr-3">{isBuyNftCompleted ? '✅' : '⌛️'}</span>Comprar un NFT
+                        </Link>
+                    </li>
+                    <li style={{ marginBottom: 20 }}>
+                        <Link href="/2/burnNft" style={{ textDecoration: 'none', color: '#222', display: 'block', padding: 16, borderRadius: 8, background: '#f5f5f5', transition: 'background 0.2s', fontWeight: 500 }}>
+                            <span className="mr-3">{isBurnNftCompleted ? '✅' : '⌛️'}</span>Redimir un NFT
                         </Link>
                     </li>
                 </ul>

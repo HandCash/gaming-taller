@@ -43,9 +43,9 @@ export default function BurnNftComponent({ hasAnyBox, isBoxOpen }: Params) {
                 <Button onClick={handleOpenBox} className="w-full mt-4" disabled={isPaying}>{isPaying ? 'Abriendo...' : 'Abrir Caja'}</Button>
             </div >}
             {isBoxOpen && <div className="flex flex-col items-center max-w-lg">
-                <img src={"/diploma.png"} className="w-64 h-64 border shadow-md my-6" />
                 <p className="text-3xl font-bold text-green-600 mb-2">🥳 Enhorabuena</p>
                 <p>Has obtenido tu diploma del curso! Revisa tu billetera de HandCash</p>
+                <img src={"/diploma.png"} className="w-64 h-64 border shadow-md my-6" />
             </div>}
         </div>
     );

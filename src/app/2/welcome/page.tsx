@@ -11,18 +11,18 @@ export const revalidate = 0;
 export default async function Page() {
     let user;
     try {
+        await connectDB();
         user = await getAuthenticatedUserOrThrow();
     } catch (error) {
         return (
             <WelcomeComponent isBurnNftCompleted={false} isBuyNftCompleted={false} isCreateNftCompleted={false} />
         );
     }
-    await connectDB();
     const account = await handCash.getAccountFromAuthToken(user.authToken);
     const results = await Promise.all([
-        NftModel.find({ userId: user.handcashId, label: { $exists: false } }),
+        NftModel.find({ userId: user.handcashId, label: 'avatar' }),
         account.items.getItemsInventory({ searchString: 'Diploma' }),
-        PaymentModel.find({ userId: user.handcashId, tag: 'buyNft' }),
+        NftModel.find({ userId: user.handcashId, label: 'buyNft' }),
     ]);
 
     return (
