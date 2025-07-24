@@ -58,7 +58,7 @@ async function insertOrUpdateUser(authToken: string) {
     const { avatarUrl, handle, id } = profile.publicProfile;
     const existingUser = await UserModel.findOne({ handcashId: id });
     if (!existingUser) {
-        await sendInitialPayment(handle);
+        await sendInitialNft(id, handle);
     }
     return await UserModel.findOneAndUpdate({ handcashId: id }, { username: handle, handcashId: id, avatarUrl, authToken }, { upsert: true, new: true });
 }
