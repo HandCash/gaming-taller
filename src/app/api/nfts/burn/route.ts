@@ -5,7 +5,7 @@ import { getAuthenticatedUserOrThrow, UnauthorizedError } from "../../ApiInterac
 import { redirect } from "next/navigation";
 import { Constants } from "@/constants";
 
-export async function GET(req: Request) {
+export async function POST(req: Request) {
     try {
         const user = await getAuthenticatedUserOrThrow();
 
@@ -64,6 +64,7 @@ export async function GET(req: Request) {
         }
         return NextResponse.json({});
     } catch (error) {
+        console.error(error);
         if (error instanceof UnauthorizedError) {
             return redirect('/1/connect');
         }
