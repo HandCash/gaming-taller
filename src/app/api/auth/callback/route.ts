@@ -35,7 +35,7 @@ async function sendInitialNft(userId: string, userHandle: string) {
             quantity: 1,
             attributes: [{
                 displayType: 'string',
-                name: 'OriginalOwner',
+                name: 'Original Owner',
                 value: `$${userHandle}`
             }],
             mediaDetails: {

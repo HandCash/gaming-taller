@@ -6,7 +6,7 @@ export default function Page({ searchParams }: { searchParams: { [key: string]: 
         return (
             <div className="flex flex-col items-center justify-center p-16">
                 <h3 className="text-2xl font-bold mb-2 text-green-500">Gracias por el pago!</h3>
-                <p className="mb-8">Este es tu avatar</p>
+                <p className="mb-8">Este es tu avatar. Te lo hemos enviado a tu billetera!</p>
                 <img src={`https://api.dicebear.com/9.x/personas/svg?seed=${txId}`} width={100} height={100} className="w-56 h-56 rounded-full border shadow-lg" />
             </div>
         );

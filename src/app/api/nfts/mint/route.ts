@@ -90,7 +90,7 @@ export async function POST(req: Request) {
     } catch (error) {
         console.error(error);
         if (error instanceof UnauthorizedError) {
-            return redirect('/connect');
+            return redirect('/1/connect');
         }
         return NextResponse.json({ error: (error as any).message }, { status: 500 });
     }
