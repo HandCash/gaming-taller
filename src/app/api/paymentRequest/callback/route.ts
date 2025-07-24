@@ -17,7 +17,7 @@ export async function POST(req: Request) {
         }
 
         const user = await UserModel.findOne({ handcashId: data['userData']['id'] });
-        const paymentRequestId = data[''];
+        const paymentRequestId = data['paymentRequestId'];
         let label = 'avatar';
 
         if (paymentRequestId === '688193a4a144bf31df752c9e') {
