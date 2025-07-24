@@ -12,7 +12,7 @@ import { useState } from "react";
 type AvatarProperty = 'clothesColor' | 'eyes' | 'hairColor' | 'top';
 
 const clothesValues = ['DD0000', '00DD00', '0000EE', '888888', '000000', 'FFFFFF'];
-const hairValues = ['DD0000', '00DD00', '0000EE', '888888', '000000', 'FFFFFF']
+const hairValues = ['000000', 'FFFFFF', 'DD0000', '00DD00', '0000EE', '888888', '966919', 'CCCC00']
 const topValues = ['frizzle', 'bob', 'bigHair', 'shaggy', 'theCaesar', 'dreads01'];
 const eyesValues = ['default', 'closed', 'cry'];
 
@@ -116,7 +116,7 @@ export default function MintNftComponent() {
                 <p className="text-lg font-semibold tracking-tighter uppercase">Crea tu avatar</p>
                 <div className="flex flex-col space-y-4">
                     <div className="flex justify-center">
-                        <img src={avatarUrl} width={100} height={100} className="w-32 h-32 rounded-full bg-gray-100" />
+                        <img src={avatarUrl} width={100} height={100} className="w-32 h-32 rounded-full border border-gray-300 bg-gray-100 shadow-lg" />
                     </div>
                     <div className="flex flex-col space-y-1.5">
                         <p className="text-sm font-semibold">Color de Ropa</p>
@@ -157,6 +157,8 @@ export default function MintNftComponent() {
                             {buildChip({ label: 'Gris', value: '888888', key: 'hairColor' })}
                             {buildChip({ label: 'Negro', value: '000000', key: 'hairColor' })}
                             {buildChip({ label: 'Blanco', value: 'FFFFFF', key: 'hairColor' })}
+                            {buildChip({ label: 'Marron', value: '966919', key: 'hairColor' })}
+                            {buildChip({ label: 'Amarillo', value: 'FFEA00', key: 'hairColor' })}
                         </div>
                     </div>
                     <div className="flex space-x-4 pt-6 w-full">
@@ -167,9 +169,9 @@ export default function MintNftComponent() {
             </div>
             <div className="border-b lg:border-b-0 lg:border-r border-gray-200"></div>
             <div className="flex flex-col gap-4 w-full lg:w-1/2 px-6">
-                <p className="text-lg font-semibold text-green-600">Avatares creados</p>
+                <p className="text-lg font-semibold text-green-600 text-center tracking-tighter uppercase">Avatares Creados</p>
                 {mintedNfts.length === 0 && (
-                    <p className="text-gray-500">No hay avatares aún. Sé el primero en crear uno!</p>
+                    <p className="text-gray-500 text-center">No hay avatares aún. Sé el primero en crear uno!</p>
                 )}
                 <div className="grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
                     {mintedNfts.map((nft) => (
@@ -179,9 +181,9 @@ export default function MintNftComponent() {
                                     <img
                                         src={`${nft.mediaUrl}`}
                                         alt={`${nft.origin} avatar`}
-                                        className="w-328 h-32 rounded-full border-2 border-gray-200 bg-gray-100Ad shadow-lg group-hover:border-green-400"
+                                        className="w-328 h-32 rounded-full border border-gray-300 bg-gray-100 shadow-lg group-hover:border-green-400"
                                     />
-                                    <p className="w-full text-center group-hover:text-green-600"><b>${nft.username}</b></p>
+                                    <p className="w-full text-center group-hover:text-green-600"><b>{nft.name}</b></p>
                                 </div>
                             </div>
                         </a>
@@ -191,16 +193,3 @@ export default function MintNftComponent() {
         </div >
     );
 }
-
-
-
-
-// https://api.dicebear.com/9.x/avataaars/svg?clothesColor=3c4f5c,65c9ff,262e33
-
-// https://api.dicebear.com/9.x/avataaars/svg?accessories=eyepatch,kurt,prescription01
-
-// https://api.dicebear.com/9.x/avataaars/svg?eyes=closed,cry,default
-
-// https://api.dicebear.com/9.x/avataaars/svg?hairColor=2c1b18,4a312c,724133
-
-// https://api.dicebear.com/9.x/avataaars/svg?top=bigHair,bob,bun

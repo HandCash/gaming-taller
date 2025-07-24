@@ -8,6 +8,7 @@ const NftSchema = new Schema(
         origin: String,
         transactionId: String,
         mediaUrl: String,
+        name: String,
         attributes: [
             {
                 name: String,

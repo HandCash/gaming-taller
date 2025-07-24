@@ -16,7 +16,7 @@ export async function GET(req: Request) {
         return NextResponse.json({
             items: nfts.map((nft) => ({
                 username: nft.username,
-                attributes: nft.attributes,
+                name: nft.name,
                 mediaUrl: nft.mediaUrl,
                 origin: nft.origin,
                 transactionId: nft.transactionId,

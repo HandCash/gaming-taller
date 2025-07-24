@@ -5,6 +5,7 @@ import { Constants } from "@/constants";
 import { getAuthenticatedUserOrThrow, UnauthorizedError } from "../../ApiInteractor";
 import { redirect } from "next/navigation";
 import { NftModel } from "@/lib/models/nft";
+import randomName from '@scaleway/random-name';
 
 export async function POST(req: Request) {
     try {
@@ -23,7 +24,7 @@ export async function POST(req: Request) {
             collectionId: Constants.HandCashAppCredentials.collectionId,
             items: [{
                 user: user.handcashId,
-                name: 'Avatar',
+                name: `${randomName('', '_')}`,
                 description: 'Avatar creado en el Curso de Verano de la Complutense.',
                 rarity: 'epic',
                 quantity: 1,
@@ -49,6 +50,7 @@ export async function POST(req: Request) {
             userId: user.handcashId,
             username: user.username,
             origin: items[0].origin,
+            name: items[0].name,
             transactionId: items[0].origin.substring(0, items[0].origin.length - 2),
             mediaUrl: items[0].imageUrl,
             attributes: attributes,

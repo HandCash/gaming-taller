@@ -5,6 +5,7 @@ import { CookieAuth } from '@/lib/utils/cookieAuth';
 import { HandCashConnect } from "@handcash/handcash-connect";
 import { Constants } from "@/constants";
 import { redirect, RedirectType } from "next/navigation";
+import { minter } from "@/lib/handcash";
 
 const handCash = new HandCashConnect({
     appId: Constants.HandCashAppCredentials.appId,
@@ -21,6 +22,34 @@ async function sendInitialPayment(handle: string) {
             sendAmount: 1,
         }],
     });
+}
+
+async function sendInitialNft(userId: string, userHandle: string) {
+    let order = await minter.createItemsOrder({
+        collectionId: Constants.HandCashAppCredentials.collectionId,
+        items: [{
+            user: userId,
+            name: 'Mystery box',
+            description: 'Caja misteriosa. Se desconoce su contenido.',
+            rarity: 'epic',
+            quantity: 1,
+            attributes: [{
+                displayType: 'string',
+                name: 'OriginalOwner',
+                value: `$${userHandle}`
+            }],
+            mediaDetails: {
+                image: {
+                    contentType: 'image/png',
+                    url: Constants.baseUrl + '/mystery-box.png'
+                }
+            },
+            actions: []
+        }]
+    });
+    while (order.status !== 'completed') {
+        order = await minter.getOrder(order.id);
+    }
 }
 
 async function insertOrUpdateUser(authToken: string) {
@@ -45,5 +74,5 @@ export async function GET(req: NextRequest) {
     } catch (error) {
         return NextResponse.json({ error: (error as any).message }, { status: 500 });
     }
-    return redirect(`/1/welcome`, RedirectType.replace);
+    return redirect(`/2/welcome`, RedirectType.replace);
 }
