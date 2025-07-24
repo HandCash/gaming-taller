@@ -47,6 +47,7 @@ export async function POST(req: Request) {
         }
         const items = await minter.getOrderItems(order.id);
         await NftModel.create({
+            label: 'avatar',
             userId: user.handcashId,
             username: user.username,
             origin: items[0].origin,

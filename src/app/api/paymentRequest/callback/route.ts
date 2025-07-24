@@ -14,23 +14,27 @@ export async function POST(req: Request) {
         }
 
         const user = await UserModel.findOne({ handcashId: data['userData']['id'] });
+        const paymentRequestId = data[''];
 
-        const paymentRecord = await PaymentModel.create({
-            userId: user.handcashId,
-            sender: {
-                username: user.username,
-                avatarUrl: user.avatarUrl,
-            },
-            receivers: [{
-                username: 'bw0686d0a4ad161fe48b7461bc8',
-                avatarUrl: 'https://pbs.twimg.com/profile_images/1853594798592049152/o5Ocr7Mz_400x400.jpg',
-            }],
-            usdAmount: 0.01,
-            transactionId: data['transactionId'],
-            tag: 'avatar'
-        });
-
-        return NextResponse.json(paymentRecord);
+        if (paymentRequestId === '688193a4a144bf31df752c9e') {
+            // Send NFT
+        } else {
+            await PaymentModel.create({
+                userId: user.handcashId,
+                sender: {
+                    username: user.username,
+                    avatarUrl: user.avatarUrl,
+                },
+                receivers: [{
+                    username: 'bw0686d0a4ad161fe48b7461bc8',
+                    avatarUrl: 'https://pbs.twimg.com/profile_images/1853594798592049152/o5Ocr7Mz_400x400.jpg',
+                }],
+                usdAmount: 0.01,
+                transactionId: data['transactionId'],
+                tag: 'avatar'
+            });
+        }
+        return NextResponse.json({});
     } catch (error) {
         return NextResponse.json({ error: (error as any).message }, { status: 500 });
     }

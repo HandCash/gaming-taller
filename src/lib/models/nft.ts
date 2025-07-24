@@ -4,6 +4,7 @@ import mongoose, { Schema } from "mongoose";
 const NftSchema = new Schema(
     {
         userId: String,
+        label: String,
         username: String,
         origin: String,
         transactionId: String,

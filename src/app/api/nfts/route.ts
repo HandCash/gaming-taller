@@ -7,8 +7,8 @@ export async function GET(req: Request) {
     try {
         const url = new URL(req.url);
         let filters = {};
-        if (url.searchParams.has('userId')) {
-            filters = { userId: url.searchParams.get('userId') };
+        if (url.searchParams.has('label')) {
+            filters = { label: url.searchParams.get('label') };
         }
         await connectDB();
         const nfts = await NftModel.find(filters).sort({ createdAt: -1 });

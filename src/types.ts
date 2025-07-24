@@ -31,6 +31,7 @@ export interface Nft {
     transactionId: string
     mediaUrl: string
     name: string
+    label: string
     attributes: { name: string; value: string }[]
     createdAt?: Date
     updatedAt?: Date
