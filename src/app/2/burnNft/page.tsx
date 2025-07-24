@@ -2,10 +2,12 @@ import { getAuthenticatedUserOrThrow } from "@/app/api/ApiInteractor";
 import { handCash } from "@/lib/handcash";
 import { redirect } from "next/navigation";
 import BurnNftComponent from "./BurnNftComponent";
+import connectDB from "@/lib/mongodb";
 
 export default async function Page({ searchParams }: { searchParams: { [key: string]: string } }) {
     let user;
     try {
+        await connectDB();
         user = await getAuthenticatedUserOrThrow();
     } catch (error) {
         return redirect('/1/connect');

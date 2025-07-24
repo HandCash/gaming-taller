@@ -4,21 +4,26 @@ import { handCash, minter } from "@/lib/handcash";
 import { getAuthenticatedUserOrThrow, UnauthorizedError } from "../../ApiInteractor";
 import { redirect } from "next/navigation";
 import { Constants } from "@/constants";
+import { HandCashMinter } from "@handcash/handcash-connect";
 
 export async function POST(req: Request) {
     try {
         const user = await getAuthenticatedUserOrThrow();
 
         await connectDB();
-        const account = await handCash.getAccountFromAuthToken((await user).authToken);
+        const account = await handCash.getAccountFromAuthToken(user.authToken);
         const items = await account.items.getItemsInventory({
+            appId: Constants.HandCashAppCredentials.appId,
             groupingValue: 'd4f5e088af956a5426d004edefc5b28f'
         });
 
         if (items.length === 0) {
             throw new Error('No items in the inventory');
         }
-
+        const minter = HandCashMinter.fromAppCredentials({
+            ...Constants.HandCashAppCredentials,
+            authToken: user.authToken,
+        });
         const result = await minter.burnAndCreateItemsOrder({
             burn: {
                 origins: [items[0].origin],
@@ -60,6 +65,7 @@ export async function POST(req: Request) {
         });
         let order = result.itemCreationOrder;
         while (order.status !== 'completed') {
+            await new Promise(r => setTimeout(r, 200));
             order = await minter.getOrder(order.id);
         }
         return NextResponse.json({});

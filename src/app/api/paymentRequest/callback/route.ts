@@ -18,7 +18,8 @@ export async function POST(req: Request) {
 
         const user = await UserModel.findOne({ handcashId: data['userData']['id'] });
         const paymentRequestId = data['paymentRequestId'];
-        let label = 'avatar';
+
+        console.log(data)
 
         if (paymentRequestId === '688193a4a144bf31df752c9e') {
             let order = await minter.createItemsOrder({
