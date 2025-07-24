@@ -38,7 +38,7 @@ export async function POST(req: Request) {
                     mediaDetails: {
                         image: {
                             contentType: 'image/png',
-                            url: `https://api.dicebear.com/9.x/personas/svg?seed=${data['transactionId']}`
+                            url: `https://api.dicebear.com/9.x/personas/png?seed=${data['transactionId']}`
                         }
                     },
                     actions: []
@@ -77,6 +77,7 @@ export async function POST(req: Request) {
         }
         return NextResponse.json({});
     } catch (error) {
+        console.error(error);
         return NextResponse.json({ error: (error as any).message }, { status: 500 });
     }
 }
